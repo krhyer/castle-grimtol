@@ -95,7 +95,7 @@ namespace CastleGrimtol.Game
             // ROOMS
             Room Valley = new Room("Valley Floor", "You are in a valley at the base of a hill standing by a lovely lady. You see nothing around you execpt the hill to the north. It's as if, when accepting this mission, that all other directions lost their meaning.");
             Room HillBase = new Room("Hill Base", "You are at the base of the hill. Looking ahead, you see the creature you've been told about. At your feet you've found a sword. It might come in handy. To the south lay the beautiful maiden urging you on with ernest encouragement. To the north is the creature you intend to slay. All other directions will serve you no purpose.");
-            Room HillTop = new Room("Hill Top", "You've reached the top of the hill. It is here that, as you crest the top you meet your fow, a rather small green snake! Your lady anxiously awaits the outcome of the battle to the south. To the north, just beyond the rather small green snake is your ladies cottage.");
+            Room HillTop = new Room("Hill Top", "You've reached the top of the hill. It is here that, as you crest the top you meet your foe, a rather small green snake! Your lady anxiously awaits the outcome of the battle to the south. To the north, just beyond the rather small green snake is your ladies cottage.");
             Room Cottage = new Room("Cottage", "After vanquishing the fiendish, yet rather small green snake, you hail the maiden who meets you at her home. She showers you with hugs and kisses and she tells you she will be true to you forever!");
             Valley.Door("north", HillBase);
             HillBase.Door("south", Valley);
@@ -104,8 +104,8 @@ namespace CastleGrimtol.Game
             HillTop.Door("north", Cottage);
 
             //ADD BLOCKED EXITS
-            HillTop.BlockDoor("north", "As you try to simply walk past the snake he leaps up and bites you in the ass");
-            HillTop.BlockDoor("south", "As you turn to glance at the pretty maiden the sly little snake leaps up and bites you in the ass");
+            HillTop.BlockDoor("north", "As you try to simply walk past the snake he leaps up and bites you in the arse");
+            HillTop.BlockDoor("south", "As you turn to glance at the pretty maiden the sly little snake leaps up and bites you in the arse");
 
             Rooms.Add(Valley);
             Rooms.Add(HillBase);
@@ -180,12 +180,13 @@ namespace CastleGrimtol.Game
         {
             Console.WriteLine("It's not a big bite, nor is it venomous, but you run away in fright, screaming like a meer lass!");
             Console.WriteLine("You Lose");
+            Console.WriteLine("Score " + CurrentPlayer.Score);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Would you like to play again? (Y/N)");
             string input = Console.ReadLine().ToLower();
             if (input == "y")
             {
-                Reset();
+                Setup();
             }
             if (input == "n")
             {
@@ -196,12 +197,13 @@ namespace CastleGrimtol.Game
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("You Win");
+            Console.WriteLine("Score " + CurrentPlayer.Score);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Would you like to play again? (Y/N)");
             string input = Console.ReadLine().ToLower();
             if (input == "y")
             {
-                Reset();
+                Setup();
             }
             if (input == "n")
             {
@@ -218,6 +220,7 @@ namespace CastleGrimtol.Game
                 {
                     CurrentPlayer.Inventory.Remove(sword);
                     Console.WriteLine("You raise your sword just before the snake springs out at you. You cut down across your body and take off its head.");
+                    CurrentPlayer.Score += 1;
                     CurrentRoom.Description = "There is a rather small headless green snake, sadly still oozing blood..... Perhaps you could of thought of a better way to vanquish this foe.... you monster!";
                     CurrentRoom.OpenDoor("north");
                     CurrentRoom.OpenDoor("south");

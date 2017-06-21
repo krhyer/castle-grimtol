@@ -22,8 +22,7 @@ namespace CastleGrimtol
                 {
                     commandDetail = userAction[1];
                 }
-                Console.WriteLine("COMMAND: " + userCommand + " DETAIL: " + commandDetail);
-
+                
                 if (userCommand == "g" || userCommand == "go")
                 {
                     game.Move(commandDetail);                    

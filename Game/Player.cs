@@ -14,11 +14,20 @@ namespace CastleGrimtol.Game
         }
         public void ShowInventory()
         {
-
-            for (int i = 0; i < Inventory.Count; i++)
+            if (Inventory.Count == 0)
             {
-                Console.WriteLine($"{Inventory[i].Name}\n {Inventory[i].Description}");
+                Console.WriteLine("Just a bit of dirt and dust. If you want something in here, get off your lazy arse and find something, or get a job!");
+
             }
+            else
+            {
+                for (int i = 0; i < Inventory.Count; i++)
+                {
+                    Console.WriteLine($"{Inventory[i].Name}\n {Inventory[i].Description}");
+                }
+
+            }
+
         }
     }
 }
